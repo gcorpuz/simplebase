@@ -51,6 +51,7 @@ TABLE OF CONTENTS
     --color-blue-100: #dbeafe;
     --color-blue-400: #ffffff;
     --color-pink-900: #fff;
+    --color-pink-700:#91195B;
 
     --color-pink-100: #CE3C8C;
     --color-green-400: #22c55e;
@@ -112,7 +113,10 @@ a {
 }
 
 a:hover {
-    color: var(--color-primary-dark);
+    /*color: var(--color-primary-dark);*/
+    .site-header a:hover {
+    color: var(--color-pink-700);
+}
 }
 
 /* GLOBAL TYPOHRAPHY */
