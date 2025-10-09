@@ -33,6 +33,7 @@ TABLE OF CONTENTS
 
 # CUSTOM SITE STYLING (OPINIONATED)
     # BODY GRID LAYOUT SYSTEM (header, main, and footer)
+    # HEADER ON TOP OF HERO
     # CUSTOM HERO STYLING
     # CUSTOM PAGE LAYOUT - 2 COLUMNS: ASIDE + MAIN CONTENT
     # STICKYBOX
@@ -51,11 +52,13 @@ TABLE OF CONTENTS
     --color-black: #000;
     --color-black-80: rgb(0 0 0 / .8);
 
+    --color-grey-100: rgb(0 0 0 / .05);
     --color-grey-200: rgb(0 0 0 / .2);
 
     --color-blue-100: #dbeafe;
     --color-blue-400: #3b82f6;
-    --color-blue-900: #1e40af;
+    --color-blue-800: #3654a8;
+    --color-blue-900: #294491;
 
     --color-green-100: #d1fae5;
     --color-green-200: #a0f2be;
@@ -74,12 +77,15 @@ TABLE OF CONTENTS
     --color-secondary: var(--color-green-400);
 
     /* ACTION COLORS */
-    --color-links: var(--color-green-600);
-    --color-links-hover: var(--color-green-800);
-    --color-links-light: var(--color-green-200);
+    --color-links: var(--color-blue-800);
+    --color-links-hover: var(--color-blue-900);
+    --color-links-light: var(--color-blue-100);
 
+    /* SECTION SPECIFIC */
     --color-siteheader-background: transparent;
-    --color-sitefooter-background: transparent;
+    --color-siteheader-links: var(--color-blue-800);
+    --color-siteheader-links-hover: var(--color-blue-900);
+    --color-sitefooter-background: var(--color-grey-100);
     --color-hero-background: var(--color-blue-100);
 
     /* BORDERS */
@@ -349,11 +355,20 @@ html {
 }
 
 .site-nav a {
+    color: var(--color-siteheader-links);
     text-decoration: none;
     font-weight: bold;
     display: block;
     padding: var(--unit-xs);
     padding-block-start: calc(var(--unit-xs) + .1em);
+    
+}
+.site-nav a:hover {
+    color: var(--color-siteheader-links-hover);
+    text-decoration: underline;
+    text-decoration-color: var(--color-links);
+    text-underline-offset: .5em;
+    text-decoration-thickness: .1em;
 }
 
 /* SHOW MENU BUTTON ON HIGHER LAYER WHEN NAV IS OPEN */
@@ -390,7 +405,7 @@ html {
         top: 0;
         width: 100%;
         height: 100%;
-        background: red;   
+        background: var(--color-primary);   
         transition: translate 0.3s ease-out;
     }
     .site-nav[data-menustate] a {
@@ -406,12 +421,13 @@ html {
     }  
 
     /* ENABLE SVG ANIMATION FOR THE NAVICON */
-    .site-nav[data-menustate] .simple-navicon rect {
-        transition: all .3s ease-out
+    .site-nav svg.simple-navicon rect {
+        transition: all .3s ease-out;
+        fill: var(--color-primary);
     }
 
     /* CHANGE COLOR OF THE SVG NAVICON WHEN MENU IS OPEN */
-    .site-nav[data-menustate="open"] .simple-navicon rect {
+    .site-nav[data-menustate="open"] svg.simple-navicon rect {
         fill: var(--color-white);
     }
 
@@ -548,6 +564,15 @@ body > * {
 /* NUDGE THE NAV ITEMS DOWN TO ALIGN WITH IMAGE LOGO TEXT */
 .site-header .site-nav a {
     padding-block-start: calc(var(--unit-xs) + .35em);
+}
+
+/* RENDER HEADER ON TOP OF HERO */
+.site-header.on-top-of-hero {
+    position: absolute;
+    width: 100%;
+}
+.site-header.on-top-of-hero + .site-main .hero {
+    padding-block-start: calc(var(--unit-3xl) + var(--unit-xl));
 }
 
 /* CUSTOM HERO STYLING */
